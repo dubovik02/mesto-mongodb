@@ -1,11 +1,11 @@
-# Node.js and Express learn-project  
-A. Dubovik YPraktikum Sprint 12
+# Work with MongoDB, Node.js and Express learn-project  
+A. Dubovik YPraktikum Sprint 13
 ### Java Script server tools in action.
 ### In this project used Node.js and Express to develop back-end side.
 #### Version 0.0.1
 ## Quick start: 
 #### To clone repository use:
-    git clone https://github.com/dubovik02/mesto-server.io
+    git clone https://github.com/dubovik02/mesto.io
 #### Install [node.js](https://nodejs.org/en/download/) 
 #### Install requires NPMs in a dir which contains the project.
 #### To run development version localhost:3000 with hot-reload strict use:
