@@ -1,0 +1,33 @@
+{
+  "name": "mesto-server",
+  "version": "1.0.0",
+  "description": "Java Script server tools in action",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "server\u001b[B\u001b[B\u001b[B\u001b[B\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dmesto",
+    "server-side"
+  ],
+  "author": {
+    "name": "A. Dubovik",
+    "email": "dubovik02@yandex.ru",
+    "url": "https://github.com/dubovik02"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.27"
+  }
+}
