@@ -1,4 +1,9 @@
 const Cards = require('../models/card');
+
+const validationErrName = 'ValidationError';
+const castErrorName = 'CastError';
+const serverErrMessage = 'На сервере произошла ошибка';
+
 // Список карточек
 module.exports.readCards = (req, res) => {
   Cards.find({})
@@ -6,7 +11,7 @@ module.exports.readCards = (req, res) => {
       res.status(200).send(cards);
     })
     .catch(() => {
-      res.status(500).send({ message: 'Ошибка сервера при получении списка карточек' });
+      res.status(500).send({ message: serverErrMessage });
     });
 };
 // Создание карточки
@@ -17,8 +22,12 @@ module.exports.createCard = (req, res) => {
     .then((card) => {
       res.status(200).send({ data: card });
     })
-    .catch(() => {
-      res.status(500).send({ message: 'Ошибка сервера при добавлении карточки' });
+    .catch((err) => {
+      if (err.name === validationErrName) {
+        res.status(400).send({ error: err.message });
+      } else {
+        res.status(500).send({ message: serverErrMessage });
+      }
     });
 };
 // Удаление карточки
@@ -31,8 +40,12 @@ module.exports.deleteCardById = (req, res) => {
         res.status(200).send({ data: card });
       }
     })
-    .catch(() => {
-      res.status(500).send({ message: 'Ошибка сервера при удалении карточки' });
+    .catch((err) => {
+      if (err.name === castErrorName) {
+        res.status(400).send({ message: 'Некорректный формат ID', error: err.message });
+      } else {
+        res.status(500).send({ message: serverErrMessage });
+      }
     });
 };
 // Like
@@ -46,8 +59,12 @@ module.exports.like = (req, res) => {
         res.status(404).send({ message: `Карточка с ID ${req.params.cardId} не найдена.` });
       }
     })
-    .catch(() => {
-      res.status(500).send({ message: 'Ошибка сервера в процессе Like-процедуры' });
+    .catch((err) => {
+      if (err.name === castErrorName) {
+        res.status(400).send({ message: 'Некорректный формат ID', error: err.message });
+      } else {
+        res.status(500).send({ message: serverErrMessage });
+      }
     });
 };
 // Dislike
@@ -61,7 +78,11 @@ module.exports.dislike = (req, res) => {
         res.status(404).send({ message: `Карточка с ID ${req.params.cardId} не найдена.` });
       }
     })
-    .catch(() => {
-      res.status(500).send({ message: 'Ошибка сервера в процессе Dislike' });
+    .catch((err) => {
+      if (err.name === castErrorName) {
+        res.status(400).send({ message: 'Некорректный формат ID', error: err.message });
+      } else {
+        res.status(500).send({ message: serverErrMessage });
+      }
     });
 };

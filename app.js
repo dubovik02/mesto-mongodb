@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ type: 'application/*+json' }));
+app.use(bodyParser.json());
 //------------
 app.use((req, res, next) => {
   req.user = {
@@ -32,4 +32,6 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Server has been started at port ${PORT}`);
 });
